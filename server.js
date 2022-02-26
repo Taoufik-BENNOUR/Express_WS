@@ -1,6 +1,7 @@
 require("dotenv").config({path:"./config/.env"})
 const express = require('express');
 const connectDB = require('./config/connectDB')
+const auth = require('./routes/auth')
 ///local middleware
 
 const logger = (req,res,next)=>{
@@ -76,7 +77,7 @@ app.delete('/phones/:id',(req,res)=>{
     }
 })
 
-
+app.use('/',auth)
 //listen
 app.listen(process.env.port,(err)=>{
     err? console.log('server connection failed',err):
